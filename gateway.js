@@ -8,10 +8,7 @@ const gateway = new ApolloGateway({
   ],
 });
 
-const server = new ApolloServer({ gateway: gateway });
-server.listen().then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
+const server = new ApolloServer({ gateway: gateway, subscriptions: false });
+server.listen({ port: 3000 }).then(({ url }) => {
+  console.log(`🚏 Gateway service ready at ${url}`);
 });
-
-// app.listen(3000);
-// console.log("Running a GraphQL API server at http://localhost:3000/graphql");

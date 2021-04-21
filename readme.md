@@ -1,29 +1,25 @@
-## Product
+# Gateway
 
-Start the service using: `node index.js`
+```
+npm start
+```
 
 ```gql
 query Product {
   product(id: "123") {
     id
     name
-  }
-}
-```
-
-## Price
-
-Start the service using: `node index.js`
-
-```gql
-query Product {
-  product(id: "123") {
-    id
     price
   }
 }
 ```
 
-## The magic stitching
+## Open issue
 
-...
+`@internal` directive is still in [draft](https://github.com/apollographql/federation/pull/653) the rename to productPrice (instead of product) is to prevent naming conflicts in the gateway. Ideally the query in the pricing typeDefs looks like:
+
+```gql
+extend type Query {
+  product(id: String!): Product! @internal
+}
+```
