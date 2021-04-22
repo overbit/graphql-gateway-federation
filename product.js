@@ -11,16 +11,14 @@ const typeDefs = gql`
   }
 `;
 
-const resolvers = {
-  Query: {
-    product(_, { id }) {
-      return {
-        id: id,
-        name: "Bike",
-      };
-    },
-  },
+const product = (_, { id }) => {
+  return {
+    id: id,
+    name: "Bike",
+  };
 };
+
+const resolvers = { Query: { product } };
 
 const server = new ApolloServer({
   schema: buildFederatedSchema([{ typeDefs, resolvers }]),
