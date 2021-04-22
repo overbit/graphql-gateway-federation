@@ -6,7 +6,8 @@
     "start": "concurrently -k npm:server:*",
     "server:product": "nodemon product.js",
     "server:pricing": "nodemon pricing.js",
-    "server:gateway": "nodemon gateway.js"
+    "server:gateway": "nodemon gateway.js",
+    "server:ratings": "nodemon ratings.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,8 @@
     "@apollo/federation": "^0.23.0",
     "@apollo/gateway": "^0.26.1",
     "apollo-server": "^2.23.0",
-    "graphql": "^15.5.0"
+    "graphql": "^15.5.0",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "concurrently": "^6.0.2",
