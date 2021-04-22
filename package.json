@@ -6,7 +6,8 @@
     "start": "concurrently -k npm:server:*",
     "server:product": "nodemon product.js",
     "server:pricing": "nodemon pricing.js",
-    "server:gateway": "nodemon gateway.js"
+    "server:gateway": "nodemon gateway.js",
+    "generate:types": "graphql-codegen --config codegen.yml"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,8 @@
     "graphql": "^15.5.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.21.4",
+    "@graphql-codegen/typescript": "^1.22.0",
     "concurrently": "^6.0.2",
     "nodemon": "^2.0.7"
   }
