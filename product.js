@@ -2,6 +2,8 @@ const { ApolloServer, gql } = require("apollo-server");
 const { buildFederatedSchema } = require("@apollo/federation");
 const { importSchema } = require("./import-schema");
 
+const typeDefs = importSchema("product-service.graphql");
+
 const resolvers = {
   Query: {
     product(_, { id }) {
@@ -12,8 +14,6 @@ const resolvers = {
     },
   },
 };
-
-const typeDefs = importSchema("product-service.graphql");
 
 const server = new ApolloServer({
   schema: buildFederatedSchema([{ typeDefs, resolvers }]),
