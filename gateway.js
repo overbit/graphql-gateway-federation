@@ -1,5 +1,5 @@
-var { ApolloGateway } = require("@apollo/gateway");
-var { ApolloServer } = require("apollo-server");
+import { ApolloGateway } from "@apollo/gateway";
+import { ApolloServer } from "apollo-server";
 
 const gateway = new ApolloGateway({
   serviceList: [
@@ -9,6 +9,7 @@ const gateway = new ApolloGateway({
 });
 
 const server = new ApolloServer({ gateway: gateway, subscriptions: false });
+
 server.listen({ port: 3000 }).then(({ url }) => {
   console.log(`🚏 Gateway service ready at ${url}`);
 });

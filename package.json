@@ -2,6 +2,7 @@
   "name": "graphql-stitching-sample",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "concurrently -k npm:server:*",
     "server:product": "nodemon product.js",
