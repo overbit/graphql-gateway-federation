@@ -22,6 +22,9 @@ const resolvers = { Query: { product } };
 
 const server = new ApolloServer({
   schema: buildFederatedSchema([{ typeDefs, resolvers }]),
+  context: ({ req }) => {
+    console.log(req.headers["x-api-key"]);
+  },
 });
 
 server.listen({ port: 4000 }).then(({ url }) => {
