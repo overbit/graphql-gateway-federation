@@ -6,14 +6,29 @@ const typeDefs = gql`
     productPrice(id: String!): Product!
   }
 
-  extend type Product @key(fields: "id") {
+  extend interface Product {
+    id: String! @external
+    price: Float!
+  }
+
+  extend type Primary @key(fields: "id") {
+    id: String! @external
+    price: Float!
+  }
+
+  extend type Secondary @key(fields: "id") {
     id: String! @external
     price: Float!
   }
 `;
 
 const resolvers = {
-  Product: {
+  Primary: {
+    price() {
+      return 1499;
+    },
+  },
+  Secondary: {
     price() {
       return 1499;
     },

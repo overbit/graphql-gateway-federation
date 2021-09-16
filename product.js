@@ -5,10 +5,29 @@ const { importSchema } = require("./import-schema");
 const resolvers = {
   Query: {
     product(_, { id }) {
+      if (id < 100) {
+        // Primary
+        return {
+          id: id,
+          name: "Bike",
+          isoType: "BO-190",
+        };
+      }
+      // Secondary
       return {
         id: id,
         name: "Bike",
+        description: "some description",
       };
+    },
+  },
+  Product: {
+    __resolveType({ id }, context, info) {
+      if (id < 100) {
+        return "Primary";
+      }
+
+      return "Secondary";
     },
   },
 };

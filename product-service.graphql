@@ -2,7 +2,22 @@ extend type Query {
   product(id: String!): Product!
 }
 
-type Product @key(fields: "id") {
+interface Product {
   id: String!
   name: String!
+}
+
+# If an object type implements an interface, it must include all of that interface's fields
+# https://www.apollographql.com/docs/apollo-server/schema/unions-interfaces/
+
+type Primary implements Product @key(fields: "id") {
+  id: String!
+  name: String!
+  isoType: String!
+}
+
+type Secondary implements Product @key(fields: "id") {
+  id: String!
+  name: String!
+  description: String!
 }
