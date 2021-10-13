@@ -1,5 +1,5 @@
 const { ApolloServer, gql } = require("apollo-server");
-const { buildFederatedSchema } = require("@apollo/federation");
+const { buildSubgraphSchema } = require("@apollo/federation");
 
 const typeDefs = gql`
   extend type Query {
@@ -24,7 +24,7 @@ const resolvers = {
 };
 
 const server = new ApolloServer({
-  schema: buildFederatedSchema([{ typeDefs, resolvers }]),
+  schema: buildSubgraphSchema([{ typeDefs, resolvers }]),
 });
 
 server.listen({ port: 4000 }).then(({ url }) => {
