@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently -k npm:server:*",
-    "server:product": "nodemon product.js",
-    "server:pricing": "nodemon pricing.js",
-    "server:gateway": "nodemon gateway.js",
+    "start": "npm run copy:schemas && concurrently -k 'npm:server:*' 'tsc --watch --incremental'",
+    "copy:schemas": "copyfiles src/schemas/*.graphql dist/schemas --flat",
+    "build": "npm run generate:types && tsc",
+    "server:product": "nodemon dist/product.js",
+    "server:pricing": "nodemon dist/pricing.js",
+    "server:gateway": "nodemon dist/gateway.js",
     "generate:types": "graphql-codegen --config codegen.yml"
   },
   "keywords": [],
@@ -14,15 +16,18 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@apollo/federation": "^0.23.0",
-    "@apollo/gateway": "^0.26.1",
-    "apollo-server": "^2.23.0",
+    "@apollo/federation": "^0.33.3",
+    "@apollo/gateway": "^0.42.3",
+    "apollo-server": "^3.4.0",
     "graphql": "^15.5.0"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "1.21.4",
-    "@graphql-codegen/typescript": "^1.22.0",
+    "@graphql-codegen/cli": "^2.2.2",
+    "@graphql-codegen/typescript": "^2.3.0",
+    "@graphql-codegen/typescript-resolvers": "^2.4.0",
     "concurrently": "^6.0.2",
-    "nodemon": "^2.0.7"
+    "copyfiles": "^2.4.1",
+    "nodemon": "^2.0.7",
+    "typescript": "^4.4.4"
   }
 }

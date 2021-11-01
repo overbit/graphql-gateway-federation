@@ -1,7 +1,12 @@
 overwrite: true
-schema: "product-service.graphql"
-documents: null
 generates:
-  graphql.ts:
+  src/__generated_types__/product-service.ts:
+    schema: "src/schemas/product-service.graphql"
     plugins:
-      - "typescript"
+      - typescript
+      - typescript-resolvers
+  src/__generated_types__/pricing-service.ts:
+    schema: "src/schemas/pricing-service.graphql"
+    plugins:
+      - typescript
+      - typescript-resolvers

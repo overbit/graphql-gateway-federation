@@ -1,2 +1,4 @@
 node_modules
-graphql.ts
+src/__generated_types__/
+/dist/
+*.tsbuildinfo

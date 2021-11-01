@@ -1,0 +1,18 @@
+{
+  "files": [
+    "src/gateway.ts",
+    "src/pricing.ts",
+    "src/product.ts",
+    "src/product.ts"
+  ],
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "Node",
+    "noImplicitAny": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "target": "esnext"
+  }
+}
