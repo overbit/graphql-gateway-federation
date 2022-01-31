@@ -1,27 +1,31 @@
 import { ApolloServer, gql } from "apollo-server";
-import { buildFederatedSchema } from "@apollo/federation";
+import { buildSubgraphSchema } from "@apollo/subgraph";
 
 const typeDefs = gql`
   extend type Query {
     product(id: String!): Product!
   }
+
   type Product @key(fields: "id") {
     id: String!
     name: String!
   }
 `;
 
-const product = (_, { id }) => {
-  return {
-    id: id,
-    name: "Bike",
-  };
+const resolvers = {
+  Query: {
+    product: (_, { id }) => {
+      return {
+        id: id,
+        name: "Bike",
+      };
+    },
+  },
 };
 
-const resolvers = { Query: { product } };
-
 const server = new ApolloServer({
-  schema: buildFederatedSchema([{ typeDefs, resolvers }]),
+  context: ({ req }) => ({ headers: req.headers }),
+  schema: buildSubgraphSchema([{ typeDefs, resolvers }]),
 });
 
 server.listen({ port: 4000 }).then(({ url }) => {

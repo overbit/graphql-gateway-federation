@@ -1,8 +1,12 @@
 # Gateway
 
+This example shows how to implement a custom directive on a subgraph. Prices can only be retrieved for users with an `authorization` header.
+
 ```
 npm start
 ```
+
+Goto the gateway at: http://localhost:3000/
 
 ```gql
 query Product {
@@ -14,12 +18,4 @@ query Product {
 }
 ```
 
-## Open issue
-
-`@internal` directive is still in [draft](https://github.com/apollographql/federation/pull/653) the rename to productPrice (instead of product) is to prevent naming conflicts in the gateway. Ideally the query in the pricing typeDefs looks like:
-
-```gql
-extend type Query {
-  product(id: String!): Product! @internal
-}
-```
+This will now return a `not authorized` result. If you a `authorization` header, with any value. The request will come through as expected.
