@@ -14,6 +14,7 @@ const typeDefs = gql`
 const resolvers = {
   Product: {
     price() {
+      console.log("resolver called");
       return 1499;
     },
   },

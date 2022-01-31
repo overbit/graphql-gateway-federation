@@ -22,6 +22,7 @@ export const authDirective = () => {
           if (authDirective) {
             const { resolve = defaultFieldResolver } = fieldConfig;
             fieldConfig.resolve = function (source, args, context, info) {
+              console.log("Auth directive transformation function");
               if (!context.headers.authorization) {
                 throw new Error("not authorized");
               }
